@@ -1,5 +1,6 @@
 # pliki kompilacji Rust
 hana-rs/target/
+installer/target/
 
 # gotowy plik .exe – publikowany jako Release, nie w repozytorium
 dist/

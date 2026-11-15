@@ -37,8 +37,15 @@ Inne myszy z układem Telink/Evision (VID `320F`) mogą używać podobnego proto
 
 ## Instalacja
 
-1. Pobierz `HanaControl.exe` z zakładki **Releases**.
-2. Uruchom – instalacja nie jest potrzebna.
+Z zakładki **Releases** pobierz jedną z wersji:
+
+- **Instalator** `HanaControl-Setup-x.y.z.exe` – instaluje dla bieżącego użytkownika (bez uprawnień administratora)
+  do `%LOCALAPPDATA%\Programs\Hana Control`, tworzy skrót w menu Start (opcjonalnie na pulpicie), może włączyć autostart
+  i dodaje wpis w *Ustawienia → Aplikacje*, skąd można ją odinstalować. Aktualizacja: uruchom nowszy instalator.
+- **Wersja przenośna** `HanaControl.exe` – uruchamiasz z dowolnego miejsca, bez instalacji.
+
+Instalacja cicha (np. do wdrożeń): `HanaControl-Setup-x.y.z.exe --silent`,
+odinstalowanie: `"%LOCALAPPDATA%\Programs\Hana Control\uninstall.exe" --uninstall --silent`.
 
 Przy pierwszym uruchomieniu Windows SmartScreen może ostrzec przed nieznanym programem (plik nie jest podpisany cyfrowo):
 *Więcej informacji → Uruchom mimo to*.
@@ -57,6 +64,15 @@ cargo build --release
 
 Gotowy plik: `hana-rs/target/release/hana_control.exe`.
 
+Instalator (wbudowuje zbudowaną wcześniej aplikację):
+
+```bash
+cd installer
+cargo build --release
+```
+
+Gotowy instalator: `installer/target/release/hana_setup.exe`.
+
 Tryb diagnostyczny powiadomień: `hana_control.exe --test-notify` (wynik w `%TEMP%\hana_notify.txt`).
 
 ## Struktura repozytorium
@@ -71,6 +87,7 @@ hana-rs/                 aplikacja (Rust, egui/eframe + hidapi)
   src/tray.rs, win.rs    zasobnik systemowy, autostart, powiadomienia Windows
   src/icons.rs           ikony rysowane wektorowo
   assets/                ikona aplikacji i grafiki podglądu
+installer/               instalator i deinstalator (Rust, egui)
 tools/                   skrypty Python (hidapi) użyte do ustalenia protokołu
 docs/                    zrzuty ekranu
 ```
