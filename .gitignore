@@ -1,0 +1,17 @@
+# pliki kompilacji Rust
+hana-rs/target/
+
+# gotowy plik .exe – publikowany jako Release, nie w repozytorium
+dist/
+
+# stara wersja aplikacji (C# WPF), zastąpiona przez hana-rs
+app/
+
+# Python
+__pycache__/
+*.pyc
+
+# system / edytory
+Thumbs.db
+.vs/
+.vscode/

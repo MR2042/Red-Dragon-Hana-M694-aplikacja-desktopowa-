@@ -1,0 +1,25 @@
+[package]
+name = "hana_control"
+version = "0.2.0"
+edition = "2024"
+description = "Panel ustawień myszy Redragon M694 Hana (DPI, częstotliwość, podświetlenie)"
+
+[dependencies]
+eframe = { version = "0.31", default-features = false, features = ["wgpu", "default_fonts"] }
+hidapi = "2"
+png = "0.18.1"
+raw-window-handle = "0.6"
+tauri-winrt-notification = "0.8.1"
+tray-icon = "0.26.1"
+windows-sys = { version = "0.61.2", features = ["Win32_Foundation", "Win32_UI_WindowsAndMessaging", "Win32_System_Threading", "Win32_UI_Shell"] }
+winreg = "0.56.0"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[build-dependencies]
+winresource = "0.1.34"

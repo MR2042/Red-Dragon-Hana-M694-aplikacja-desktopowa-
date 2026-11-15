@@ -1,0 +1,13 @@
+fn main() {
+    // Ikona pliku .exe (widoczna w Eksploratorze i na pasku zadań).
+    if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("windows") {
+        let mut res = winresource::WindowsResource::new();
+        res.set_icon("assets/icon.ico");
+        res.set("FileDescription", "Hana Control – panel myszy Redragon M694");
+        res.set("ProductName", "Hana Control");
+        if let Err(e) = res.compile() {
+            println!("cargo:warning=Nie udało się dodać ikony do pliku .exe: {e}");
+        }
+    }
+    println!("cargo:rerun-if-changed=assets/icon.ico");
+}
